@@ -8,6 +8,46 @@ const sampleNewsItem = {
   ikinciParagraf: "Örnek paragraf 2",
   ucuncuParagraf: "Örnek paragraf 3",
 };
+function NewsBuilder(newsItem) {
+  const divArticle = document.createElement("div");
+  divArticle.classList.add("article");
+
+  const h2 = document.createElement("h2");
+  h2.textContent = newsItem.baslik;
+
+  const p = document.createElement("p");
+  p.classList.add("date");
+  p.textContent = newsItem.tarih;
+
+  const p1 = document.createElement("p");
+  p1.textContent = newsItem.ilkParagraf;
+
+  const p2 = document.createElement("p");
+  p2.textContent = newsItem.ikinciParagraf;
+
+  const p3 = document.createElement("p");
+  p3.textContent = newsItem.ucuncuParagraf;
+
+  const button = document.createElement("button");
+  button.classList.add("expandButton");
+  button.textContent = "+";
+  button.addEventListener("click", () => {
+    divArticle.classList.toggle("isOpen");
+  });
+  divArticle.appendChild(h2);
+  divArticle.appendChild(p);
+  divArticle.appendChild(button);
+  divArticle.appendChild(p1);
+  divArticle.appendChild(p2);
+  divArticle.appendChild(p3);
+
+  return divArticle;
+}
+newsData.forEach((e) => {
+  const item = NewsBuilder(e);
+  const articleList = document.querySelector(".articleList");
+  articleList.appendChild(item);
+});
 
 /*
 Adım 1: NewsBuilder component fonksiyonu yazmak
